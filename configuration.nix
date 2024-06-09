@@ -54,7 +54,7 @@
   };
 
   services.qemuGuest.enable = true;
-  servixes.xrdp = {
+  services.xrdp = {
     enable = true;
     defaultWindowManager = "dwm";
     openFirewall = true;
