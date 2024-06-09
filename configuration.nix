@@ -53,6 +53,13 @@
     windowManager.dwm.enable = true;
   };
 
+  services.qemuGuest.enable = true;
+  servixes.xrdp = {
+    enable = true;
+    defaultWindowManager = "dwm";
+    openFirewall = true;
+  };
+
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mead = {
@@ -71,12 +78,17 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    git
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget 
+    wget
     picom
     dmenu
     st
-    git
+    firefox
+  ];
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
