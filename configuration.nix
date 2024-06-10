@@ -2,12 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
       ./hardware-configuration.nix
+      inputs.home-manager.nixosModules.default
     ];
 
   # Bootloader.
@@ -60,13 +61,28 @@
     openFirewall = true;
   };
 
+  programs.fish.enable = true;
+  
+
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.mead = {
     isNormalUser = true;
     description = "mead";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    packages = with pkgs; [
+      neovim
+      firefox
+      xdg-user-dirs
+    ];
+  };
+
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      "mead" = import ./home.nix;
+    };
   };
 
   # Enable automatic login for the user.
@@ -79,13 +95,12 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     picom
     dmenu
     st
-    firefox
   ];
+  
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
