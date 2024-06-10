@@ -17,7 +17,7 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  networking.hostName = "nixos"; # Define your hostname.
+networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -74,7 +74,6 @@
     packages = with pkgs; [
       neovim
       firefox
-      xdg-user-dirs
       grc
       fzf
       starship
@@ -88,6 +87,7 @@
       "mead" = import ./home.nix;
     };
   };
+
 
   # Enable automatic login for the user.
   services.getty.autologinUser = "mead";
@@ -104,6 +104,7 @@
     dmenu
     st
   ];
+
   
 
   fonts.packages = with pkgs; [

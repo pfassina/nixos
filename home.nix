@@ -1,10 +1,16 @@
-{ config, pkgs, ... }:
+ { config, pkgs, ... }:
 
 {
   home.username = "mead";
   home.homeDirectory = "/home/mead";
 
   home.stateVersion = "24.05"; # Please read the comment before changing.
+
+  xdg = {
+    enable = true;
+    userDirs.createDirectories = true;
+  }; 
+
 
   programs.fish = {
     enable = true;
