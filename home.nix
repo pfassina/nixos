@@ -14,10 +14,14 @@
     plugins = [
       { name = "grc"; src = pkgs.fishPlugins.grc.src; }
       { name = "z"; src = pkgs.fishPlugins.z.src; }
-      { name = "starship"; src = pkgs.fishPlugins.starship.src; }
+      { name = "fzf-fish"; src = pkgs.fishPlugins.fzf-fish.src; }
+      { name = "forgit"; src = pkgs.fishPlugins.forgit.src; }
     ];
   };
 
+  programs.starship = {
+    enable = true;
+  };
 
 
   home.packages = [

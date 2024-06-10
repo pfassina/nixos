@@ -70,10 +70,14 @@
     isNormalUser = true;
     description = "mead";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.fish;
     packages = with pkgs; [
       neovim
       firefox
       xdg-user-dirs
+      grc
+      fzf
+      starship
     ];
   };
 
