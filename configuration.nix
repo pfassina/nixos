@@ -74,8 +74,10 @@ networking.hostName = "nixos"; # Define your hostname.
       });
       st = super.st.overrideAttrs (oldAttrs: rec {
         patches = [
-          ./modules/st/st-nordtheme-0.8.5.diff
+          ./modules/st/st-no-fiesta.diff
+          ./modules/st/st-ligatures-20240105-0.9.diff
         ];
+        buildInputs = oldAttrs.buildInputs ++ [ pkgs.harfbuzz ];
       });
     })
   ];
