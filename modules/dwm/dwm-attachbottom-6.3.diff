@@ -11,7 +11,7 @@ diff -up dwm-6.3/dwm.c dwm-6.3-attachbottom/dwm.c
  static void checkotherwm(void);
 @@ -408,6 +409,15 @@ attach(Client *c)
  }
- 
+
  void
 +attachbottom(Client *c)
 +{
@@ -43,12 +43,12 @@ diff -up dwm-6.3/dwm.c dwm-6.3-attachbottom/dwm.c
  	attachstack(c);
  	focus(NULL);
  	arrange(NULL);
-@@ -1903,7 +1913,7 @@ updategeom(void)
- 					m->clients = c->next;
- 					detachstack(c);
- 					c->mon = mons;
--					attach(c);
-+					attachbottom(c);
- 					attachstack(c);
- 				}
- 				if (m == selmon)
+@@ -1951,7 +1961,7 @@ updategeom(void)
+        m->clients = c->next;
+				detachstack(c);
+				c->mon = mons;
+-				attach(c);
++				attachbottom(c);
+				attachstack(c);
+			}
+			if (m == selmon)
