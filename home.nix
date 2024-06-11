@@ -36,6 +36,7 @@
 
 
   home.file = {
+    "feh.bg".source = ./modules/home-manager/bg.jpg;
   };
 
   home.sessionVariables = {
