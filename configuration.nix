@@ -59,6 +59,8 @@ networking.hostName = "nixos"; # Define your hostname.
     (self: super: {
       dwm = super.dwm.overrideAttrs (oldAttrs: rec {
         patches = [
+          ./modules/dwm/dwm-firacode.diff
+          ./modules/dwm/dwm-no-clown-fiesta.diff
           ./modules/dwm/dwm-statuspadding-6.3.diff
           ./modules/dwm/dwm-alpha-20230401-348f655.diff
           ./modules/dwm/dwm-alwayscenter-20200625-f04cac6.diff
