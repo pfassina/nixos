@@ -54,8 +54,6 @@ networking.hostName = "nixos"; # Define your hostname.
     windowManager.dwm.enable = true;
   };
 
-  services.picom.enable = true;
-
 
   nixpkgs.overlays = [
     (self: super: {
@@ -69,14 +67,10 @@ networking.hostName = "nixos"; # Define your hostname.
           ./modules/dwm/dwm-uselessgap-20211119-58414bee958f2.diff
           ./modules/dwm/dwm-attachbottom-6.3.diff
           ./modules/dwm/dwm-underlinetags-6.2.diff
-
           ./modules/dwm/dwm-notitle-6.2.diff
+          ./modules/dwm/dwm-colorbar-6.2.diff
 
-          # ./modules/dwm/dwm-centeredwindowname-20180909-6.2.diff
           # ./modules/dwm/dwm-barpadding-20211020-a786211.diff
-          # ./modules/dwm/dwm-colorbar-6.2.diff
-          # ./modules/dwm/dwm-status2d-6.3.diff
-          # ./modules/dwm/dwm-barconfig-6.3.diff
         ];
       });
       st = super.st.overrideAttrs (oldAttrs: rec {

@@ -12,6 +12,8 @@
     userDirs.createDirectories = true;
   }; 
 
+  services.picom.enable = true;
+
 
   programs.fish = {
     enable = true;

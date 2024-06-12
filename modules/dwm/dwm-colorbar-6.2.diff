@@ -5,7 +5,7 @@ index 1c0b587..a516645 100644
 @@ -16,6 +16,11 @@ static const char *colors[][3]      = {
  	/*               fg         bg         border   */
  	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
- 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeSel]  = { col_gray4, col_gray1,  col_cyan  },
 +	[SchemeStatus]  = { col_gray3, col_gray1,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
 +	[SchemeTagsSel]  = { col_gray4, col_cyan,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
 +    [SchemeTagsNorm]  = { col_gray3, col_gray1,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
@@ -27,14 +27,14 @@ index 4465af1..0d1d2f7 100644
  enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
         NetWMFullscreen, NetActiveWindow, NetWMWindowType,
         NetWMWindowTypeDialog, NetClientList, NetLast }; /* EWMH atoms */
-@@ -703,7 +703,7 @@ drawbar(Monitor *m)
- 
+@@ -703,7 +703,7 @@ drawbar(Monitor *m) 
+
  	/* draw status first so it can be overdrawn by tags later */
  	if (m == selmon) { /* status is only drawn on selected monitor */
 -		drw_setscheme(drw, scheme[SchemeNorm]);
 +		drw_setscheme(drw, scheme[SchemeStatus]);
- 		sw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
- 		drw_text(drw, m->ww - sw, 0, sw, bh, 0, stext, 0);
+		tw = TEXTW(stext);
+		drw_text(drw, m->ww - tw, 0, tw, bh, lrpad / 2, stext, 0);
  	}
 @@ -716,7 +716,7 @@ drawbar(Monitor *m)
  	x = 0;
@@ -45,24 +45,18 @@ index 4465af1..0d1d2f7 100644
  		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
  		if (occ & 1 << i)
  			drw_rect(drw, x + boxs, boxs, boxw, boxw,
-@@ -725,17 +725,17 @@ drawbar(Monitor *m)
- 		x += w;
- 	}
- 	w = blw = TEXTW(m->ltsymbol);
+@@ -725,12 +725,12 @@ drawbar(Monitor *m)
+		x += w;
+	}
+	w = TEXTW(m->ltsymbol);
 -	drw_setscheme(drw, scheme[SchemeNorm]);
-+	drw_setscheme(drw, scheme[SchemeTagsNorm]);
- 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
- 
- 	if ((w = m->ww - sw - x) > bh) {
- 		if (m->sel) {
--			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
-+			drw_setscheme(drw, scheme[m == selmon ? SchemeInfoSel : SchemeInfoNorm]);
- 			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
- 			if (m->sel->isfloating)
- 				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
- 		} else {
++	drw_setscheme(drw, scheme[SchemeNorm]);
+	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+
+	if ((w = m->ww - tw - x) > bh) {
 -			drw_setscheme(drw, scheme[SchemeNorm]);
-+			drw_setscheme(drw, scheme[SchemeInfoNorm]);
- 			drw_rect(drw, x, 0, w, bh, 1, 1);
- 		}
- 	}
++			drw_setscheme(drw, scheme[SchemeNorm]);
+			drw_rect(drw, x, 0, w, bh, 1, 1);
+	}
+	drw_map(drw, m->barwin, 0, 0, m->ww, bh);
+ }
