@@ -54,6 +54,8 @@ networking.hostName = "nixos"; # Define your hostname.
     windowManager.dwm.enable = true;
   };
 
+  services.picom.enable = true;
+
 
   nixpkgs.overlays = [
     (self: super: {
@@ -131,7 +133,6 @@ networking.hostName = "nixos"; # Define your hostname.
   environment.systemPackages = with pkgs; [
     git
     wget
-    picom
     dmenu
     st
     gcc
