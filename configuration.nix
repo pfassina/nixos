@@ -69,8 +69,10 @@ networking.hostName = "nixos"; # Define your hostname.
           ./modules/dwm/dwm-underlinetags-6.2.diff
           ./modules/dwm/dwm-notitle-6.2.diff
           ./modules/dwm/dwm-colorbar-6.2.diff
-
-          # ./modules/dwm/dwm-barpadding-20211020-a786211.diff
+          ./modules/dwm/dwm-barpadding-20211020-a786211.diff
+          ./modules/dwm/dwm-color-adj.diff
+          ./modules/dwm/dwm-alpha-adj.diff
+          ./modules/dwm/dwm-two-bars.diff
         ];
       });
       st = super.st.overrideAttrs (oldAttrs: rec {

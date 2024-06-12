@@ -1,0 +1,42 @@
+From 158f09e17dba7b003dda39c4d10b63d8af5dbf28 Mon Sep 17 00:00:00 2001
+From: Paulo Fassina <1872247+pfassina@users.noreply.github.com>
+Date: Tue, 11 Jun 2024 22:43:49 -0700
+Subject: [PATCH] 2 bars
+
+---
+ config.def.h | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index e9aee8f..84223d0 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -17,7 +17,7 @@ static const char col_gray2[]       = "#202020";
+ static const char col_gray3[]       = "#555555";
+ static const char col_gray4[]       = "#e1e1e1";
+ static const char col_accnt[]        = "#ac4142";
+-static const unsigned int baralpha = 0xd0;
++static const unsigned int baralpha = 0x00;
+ static const unsigned int borderalpha = OPAQUE;
+ static const char *colors[][3]      = {
+ 	/*                   fg         bg         border   */
+@@ -31,11 +31,11 @@ static const char *colors[][3]      = {
+ };
+ static const unsigned int alphas[][3]      = {
+     /*                 fg      bg        border*/
+-  [SchemeNorm]     = { OPAQUE, baralpha, borderalpha },
+-	[SchemeSel]      = { OPAQUE, baralpha, borderalpha },
+-	[SchemeStatus]   = { OPAQUE, baralpha, borderalpha },
+-	[SchemeTagsSel]  = { OPAQUE, baralpha, borderalpha },
+-	[SchemeTagsNorm] = { OPAQUE, baralpha, borderalpha },
++ [SchemeNorm]     = { OPAQUE, OPAQUE,   borderalpha },
++	[SchemeSel]      = { OPAQUE, OPAQUE,   borderalpha },
++	[SchemeStatus]   = { OPAQUE, OPAQUE,   borderalpha },
++	[SchemeTagsSel]  = { OPAQUE, OPAQUE,   borderalpha },
++	[SchemeTagsNorm] = { OPAQUE, OPAQUE,   borderalpha },
+ 	[SchemeInfoSel]  = { OPAQUE, baralpha, borderalpha },
+ 	[SchemeInfoNorm] = { OPAQUE, baralpha, borderalpha },
+ };
+-- 
+2.44.1
+
