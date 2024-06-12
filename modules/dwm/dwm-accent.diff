@@ -1,0 +1,40 @@
+From 3ca00521aa93933dde7fed087adae339a4c4ebcd Mon Sep 17 00:00:00 2001
+From: Paulo Fassina <1872247+pfassina@users.noreply.github.com>
+Date: Wed, 12 Jun 2024 15:59:08 -0700
+Subject: [PATCH] accent
+
+---
+ config.def.h | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 84223d0..bc22cb6 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -12,6 +12,7 @@ static const int horizpadbar        = 2;        /* horizontal padding for status
+ static const int vertpadbar         = 0;        /* vertical padding for statusbar */
+ static const char *fonts[]          = { "FiraCode Nerd Font:size=10" };
+ static const char dmenufont[]       = "FiraCode Nerd Font:size=10";
++static const char col_backg[]       = "#000000";
+ static const char col_gray1[]       = "#151515";
+ static const char col_gray2[]       = "#202020";
+ static const char col_gray3[]       = "#555555";
+@@ -23,11 +24,11 @@ static const char *colors[][3]      = {
+ 	/*                   fg         bg         border   */
+ 	[SchemeNorm]     = { col_gray3, col_gray1, col_gray2  },
+ 	[SchemeSel]      = { col_gray4, col_gray1, col_accnt  },
+-	[SchemeStatus]   = { col_gray3, col_gray1, "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+-	[SchemeTagsSel]  = { col_gray4, col_gray1, "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
++	[SchemeStatus]   = { col_gray4, col_gray1, "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
++	[SchemeTagsSel]  = { col_accnt, col_gray1, "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+   [SchemeTagsNorm] = { col_gray3, col_gray1, "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
+-  [SchemeInfoSel]  = { col_gray4, col_gray1, "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
+-  [SchemeInfoNorm] = { col_gray3, col_gray1, "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
++  [SchemeInfoSel]  = { col_gray4, col_backg, "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
++  [SchemeInfoNorm] = { col_gray3, col_backg, "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+ };
+ static const unsigned int alphas[][3]      = {
+     /*                 fg      bg        border*/
+-- 
+2.44.1
+
