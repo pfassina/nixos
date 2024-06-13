@@ -73,6 +73,7 @@ networking.hostName = "nixos"; # Define your hostname.
           ./modules/dwm/dwm-color-adj.diff
           ./modules/dwm/dwm-alpha-adj.diff
           ./modules/dwm/dwm-two-bars.diff
+          ./modules/dwm/dwm-accent.diff
         ];
       });
       st = super.st.overrideAttrs (oldAttrs: rec {
@@ -81,6 +82,11 @@ networking.hostName = "nixos"; # Define your hostname.
           ./modules/st/st-ligatures-20240105-0.9.diff
         ];
         buildInputs = oldAttrs.buildInputs ++ [ pkgs.harfbuzz ];
+      });
+      slstatus = super.slstatus.overrideAttrs (oldAttrs: rec {
+        patches = [
+          ./modules/slstatus/slstatus-config.diff
+        ];
       });
     })
   ];
@@ -133,11 +139,14 @@ networking.hostName = "nixos"; # Define your hostname.
     git
     wget
     dmenu
+    slstatus
     st
     gcc
     clang
     feh
     xclip
+    neofetch
+    btop
   ];
 
   

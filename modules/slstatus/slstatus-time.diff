@@ -1,0 +1,32 @@
+From aefa765ad629a853589eeb8a26d4cb85b71775d8 Mon Sep 17 00:00:00 2001
+From: Paulo Fassina <1872247+pfassina@users.noreply.github.com>
+Date: Wed, 12 Jun 2024 17:04:51 -0700
+Subject: [PATCH] time format
+
+---
+ config.def.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index d805331..486dd2c 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -1,7 +1,7 @@
+ /* See LICENSE file for copyright and license details. */
+ 
+ /* interval between updates (in ms) */
+-const unsigned int interval = 1000;
++const unsigned int interval = 60000;
+ 
+ /* text to show if no value can be retrieved */
+ static const char unknown_str[] = "n/a";
+@@ -65,5 +65,5 @@ static const char unknown_str[] = "n/a";
+  */
+ static const struct arg args[] = {
+ 	/* function format          argument */
+-	{ datetime, "%s",           "%F %T" },
++	{ datetime, "%s",           "%a %b %e %I:%M %p" },
+ };
+-- 
+2.44.1
+
