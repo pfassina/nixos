@@ -85,7 +85,7 @@ networking.hostName = "nixos"; # Define your hostname.
       });
       slstatus = super.slstatus.overrideAttrs (oldAttrs: rec {
         patches = [
-          ./modules/slstatus/slstatus-config.diff
+          ./modules/slstatus/slstatus-time.diff
         ];
       });
     })
