@@ -8,6 +8,7 @@
   imports =
     [ 
       ./hardware-configuration.nix
+      # ./modules/numi/numi.nix
       inputs.home-manager.nixosModules.default
     ];
 
@@ -74,6 +75,7 @@ networking.hostName = "nixos"; # Define your hostname.
           ./modules/dwm/dwm-alpha-adj.diff
           ./modules/dwm/dwm-two-bars.diff
           ./modules/dwm/dwm-accent.diff
+          ./modules/dwm/dwm-dmenu.diff
         ];
       });
       st = super.st.overrideAttrs (oldAttrs: rec {
@@ -134,8 +136,6 @@ networking.hostName = "nixos"; # Define your hostname.
       "mead" = import ./home.nix;
     };
   };
- 
-  
 
 
   # Enable automatic login for the user.
@@ -156,8 +156,9 @@ networking.hostName = "nixos"; # Define your hostname.
     clang
     feh
     xclip
-    neofetch
+    fastfetch
     btop
+    ripgrep
   ];
 
   

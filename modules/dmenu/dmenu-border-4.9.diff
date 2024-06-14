@@ -7,19 +7,20 @@ diff -up dmenu-4.9-b/config.def.h dmenu-4.9-a/config.def.h
  static const char worddelimiters[] = " ";
 +
 +/* Size of the window border */
-+static const unsigned int border_width = 5;
++static const unsigned int border_width = 1;
 diff -up dmenu-4.9-b/dmenu.c dmenu-4.9-a/dmenu.c
 --- dmenu-4.9-b/dmenu.c	2019-02-02 13:55:02.000000000 +0100
 +++ dmenu-4.9-a/dmenu.c	2019-05-19 02:11:20.966710117 +0200
-@@ -654,9 +654,10 @@ setup(void)
- 	swa.override_redirect = True;
- 	swa.background_pixel = scheme[SchemeNorm][ColBg].pixel;
- 	swa.event_mask = ExposureMask | KeyPressMask | VisibilityChangeMask;
--	win = XCreateWindow(dpy, parentwin, x, y, mw, mh, 0,
+@@ -654,10 +654,11 @@ setup(void)
+	swa.override_redirect = True;
+	swa.background_pixel = scheme[SchemeNorm][ColBg].pixel;
+	swa.event_mask = ExposureMask | KeyPressMask | VisibilityChangeMask;
+-	win = XCreateWindow(dpy, root, x, y, mw, mh, 0,
 +	win = XCreateWindow(dpy, parentwin, x, y, mw, mh, border_width,
- 	                    CopyFromParent, CopyFromParent, CopyFromParent,
- 	                    CWOverrideRedirect | CWBackPixel | CWEventMask, &swa);
-+	XSetWindowBorder(dpy, win, scheme[SchemeSel][ColBg].pixel);
- 	XSetClassHint(dpy, win, &ch);
- 
- 	/* open input methods */
+	                    CopyFromParent, CopyFromParent, CopyFromParent,
+	                    CWOverrideRedirect | CWBackPixel | CWEventMask, &swa);
++	XSetWindowBorder(dpy, win, scheme[SchemeSel][ColFg].pixel);
+	XSetClassHint(dpy, win, &ch);
+
+
+	/* input methods */

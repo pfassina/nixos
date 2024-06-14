@@ -13,10 +13,12 @@ diff --git a/config.def.h b/config.def.h
 index 1edb647..51612b9 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -2,6 +2,7 @@
+@@ -2,8 +2,9 @@
  /* Default settings; can be overriden by command line. */
  
  static int topbar = 1;                      /* -b  option; if 0, dmenu appears at bottom     */
+ static int centered = 0;                    /* -c option; centers dmenu on screen */
+ static int min_width = 500;                    /* minimum width when centered */
 +static int fuzzy = 1;                      /* -F  option; if 0, dmenu doesn't use fuzzy matching     */
  /* -fn option overrides fonts[0]; default X11 font or font set */
  static const char *fonts[] = {
@@ -150,14 +152,14 @@ index 6b8f51b..96ddc98 100644
  	static int tokn = 0;
  
 @@ -702,6 +789,8 @@ main(int argc, char *argv[])
- 			topbar = 0;
- 		else if (!strcmp(argv[i], "-f"))   /* grabs keyboard before reading stdin */
- 			fast = 1;
+			topbar = 0;
+		else if (!strcmp(argv[i], "-f"))   /* grabs keyboard before reading stdin */
+			fast = 1;
 +		else if (!strcmp(argv[i], "-F"))   /* grabs keyboard before reading stdin */
 +			fuzzy = 0;
- 		else if (!strcmp(argv[i], "-i")) { /* case-insensitive item matching */
- 			fstrncmp = strncasecmp;
- 			fstrstr = cistrstr;
+		else if (!strcmp(argv[i], "-c"))   /* centers dmenu on screen */
+			centered = 1;
+		else if (!strcmp(argv[i], "-i")) { /* case-insensitive item matching */
 -- 
 2.22.0
 

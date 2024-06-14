@@ -125,14 +125,13 @@ diff -upN dmenu-4.9/dmenu.c dmenu-4.9-fuzzyhighlight/dmenu.c
  }
  
  static void
-@@ -683,7 +727,8 @@ static void
+@@ -683,6 +727,7 @@ static void
  usage(void)
  {
- 	fputs("usage: dmenu [-bfiv] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
--	      "             [-nb color] [-nf color] [-sb color] [-sf color] [-w windowid]\n", stderr);
-+	      "             [-nb color] [-nf color] [-sb color] [-sf color]\n"
-+	      "             [-nhb color] [-nhf color] [-shb color] [-shf color] [-w windowid]\n", stderr);
- 	exit(1);
+	die("usage: dmenu [-bfiv] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
+-	    "             [-nb color] [-nf color] [-sb color] [-sf color] [-w windowid]");
++	    "             [-nb color] [-nf color] [-sb color] [-sf color]\n"
++	    "             [-nhb color] [-nhf color] [-shb color] [-shf color] [-w windowid]\n", stderr);
  }
  
 @@ -724,6 +769,14 @@ main(int argc, char *argv[])
