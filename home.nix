@@ -28,6 +28,7 @@
     ];
   };
 
+
   programs.starship = {
     enable = true;
   };
@@ -39,6 +40,7 @@
 
   home.file = {
     ".background-image".source = ./modules/home-manager/bg.jpg;
+    ".xprofile".text = "/run/current-system/sw/bin/slstatus &";
   };
 
   home.sessionVariables = {

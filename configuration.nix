@@ -88,6 +88,15 @@ networking.hostName = "nixos"; # Define your hostname.
           ./modules/slstatus/slstatus-time.diff
         ];
       });
+      dmenu = super.dmenu.overrideAttrs (oldAttrs: rec {
+        patches = [
+          ./modules/dmenu/dmenu-center-5.2.diff
+          ./modules/dmenu/dmenu-border-4.9.diff
+          ./modules/dmenu/dmenu-linesbelowprompt-and-fullwidth-20211014.diff
+          ./modules/dmenu/dmenu-fuzzymatch-4.9.diff
+          ./modules/dmenu/dmenu-fuzzyhighlight-4.9.diff
+        ];
+      });
     })
   ];
 
@@ -125,6 +134,8 @@ networking.hostName = "nixos"; # Define your hostname.
       "mead" = import ./home.nix;
     };
   };
+ 
+  
 
 
   # Enable automatic login for the user.
@@ -154,6 +165,7 @@ networking.hostName = "nixos"; # Define your hostname.
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
