@@ -123,9 +123,7 @@ networking.hostName = "nixos"; # Define your hostname.
     packages = with pkgs; [
       neovim
       firefox
-      grc
-      fzf
-      starship
+      bitwarden
     ];
   };
 
@@ -159,6 +157,10 @@ networking.hostName = "nixos"; # Define your hostname.
     fastfetch
     btop
     ripgrep
+    grc
+    fzf
+    starship
+    ranger
   ];
 
   
