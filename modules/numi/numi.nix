@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
  
 let
   numi = import ( pkgs.fetchFromGitHub {
@@ -10,5 +10,5 @@ let
 
 in
 {
-  environment.systemPackages = [ numi ];
+  home.packages = [ numi ]; 
 }
