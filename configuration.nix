@@ -66,6 +66,7 @@
           ./modules/dwm/dwm-two-bars.diff
           ./modules/dwm/dwm-accent.diff
           ./modules/dwm/dwm-dmenu.diff
+          ./modules/dwm/dwm-dmenu-qalc.diff
         ];
       });
       st = super.st.overrideAttrs (oldAttrs: rec {

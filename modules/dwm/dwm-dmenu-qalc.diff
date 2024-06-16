@@ -15,7 +15,7 @@ index 97f4786..f59cb37 100644
  	{ MODKEY,                       XK_Return, zoom,           {0} },
  	{ MODKEY,                       XK_Tab,    view,           {0} },
  	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-+	{ MODKEY,                       XK_c,      spawn,          {.v = dmenuqalc} },
++	{ MODKEY|ShiftMask,             XK_equal,  spawn,          {.v = dmenuqalc} },
  	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
  	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
  	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
