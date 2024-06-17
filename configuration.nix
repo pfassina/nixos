@@ -1,5 +1,5 @@
 
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs,  ... }:
 
 
 {
@@ -103,6 +103,9 @@
   };
 
 
+  services.picom.enable = true;
+
+
   programs.fish.enable = true;
   
 
@@ -116,6 +119,8 @@
       firefox
       bitwarden
       libqalculate
+      qalculate-gtk
+      tmux
     ];
   };
 
@@ -123,7 +128,7 @@
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
     users = {
-      "mead" = import ./home.nix;
+      "mead" = import ./home;
     };
   };
 
