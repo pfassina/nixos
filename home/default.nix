@@ -27,8 +27,15 @@
     userDirs.createDirectories = true;
   };
 
+  home.packages = with pkgs; [
+    neovim
+    bitwarden
+    libqalculate
+    qalculate-gtk
+  ];
+
   home.file = {
-    ".background-image".source = ./theme/bg.jpg
+    ".background-image".source = ./theme/bg.jpg;
     ".xprofile".text = "/run/current-system/sw/bin/slstatus &";
   };
 
