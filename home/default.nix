@@ -6,12 +6,6 @@
     ++ import ./programs
   ;
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
-
   home = {
     username = "mead";
     homeDirectory = "/home/mead";
@@ -28,15 +22,25 @@
   };
 
   home.packages = with pkgs; [
+    st
+    dmenu
+    slstatus
     neovim
     bitwarden
     libqalculate
     qalculate-gtk
+    fastfetch
+    btop
+    ripgrep
+    grc
+    fzf
+    starship
+    ranger
   ];
 
   home.file = {
-    ".background-image".source = ./theme/bg.jpg;
-    ".xprofile".text = "/run/current-system/sw/bin/slstatus &";
+    ".background-image".source = ./wallpapers/bg.jpg;
+    ".xprofile".text = "/home/mead/.nix-profile/bin/slstatus &";
   };
 
   programs.home-manager.enable = true;

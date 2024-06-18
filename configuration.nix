@@ -3,11 +3,10 @@
 
 
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
+  ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -56,53 +55,7 @@
     qemuGuest.enable = true;
   };
 
-  nixpkgs.overlays = [
-    (self: super: {
-      dwm = super.dwm.overrideAttrs (oldAttrs: rec {
-        patches = [
-          ./modules/dwm/dwm-firacode.diff
-          ./modules/dwm/dwm-no-clown-fiesta.diff
-          ./modules/dwm/dwm-statuspadding-6.3.diff
-          ./modules/dwm/dwm-alpha-20230401-348f655.diff
-          ./modules/dwm/dwm-alwayscenter-20200625-f04cac6.diff
-          ./modules/dwm/dwm-uselessgap-20211119-58414bee958f2.diff
-          ./modules/dwm/dwm-attachbottom-6.3.diff
-          ./modules/dwm/dwm-underlinetags-6.2.diff
-          ./modules/dwm/dwm-notitle-6.2.diff
-          ./modules/dwm/dwm-colorbar-6.2.diff
-          ./modules/dwm/dwm-barpadding-20211020-a786211.diff
-          ./modules/dwm/dwm-color-adj.diff
-          ./modules/dwm/dwm-alpha-adj.diff
-          ./modules/dwm/dwm-two-bars.diff
-          ./modules/dwm/dwm-accent.diff
-          ./modules/dwm/dwm-dmenu.diff
-          ./modules/dwm/dwm-dmenu-qalc.diff
-        ];
-      });
-      st = super.st.overrideAttrs (oldAttrs: rec {
-        patches = [
-          ./modules/st/st-no-fiesta.diff
-          ./modules/st/st-ligatures-20240105-0.9.diff
-        ];
-        buildInputs = oldAttrs.buildInputs ++ [ pkgs.harfbuzz ];
-      });
-      slstatus = super.slstatus.overrideAttrs (oldAttrs: rec {
-        patches = [
-          ./modules/slstatus/slstatus-time.diff
-        ];
-      });
-      dmenu = super.dmenu.overrideAttrs (oldAttrs: rec {
-        patches = [
-          ./modules/dmenu/dmenu-center-5.2.diff
-          ./modules/dmenu/dmenu-border-4.9.diff
-          ./modules/dmenu/dmenu-linesbelowprompt-and-fullwidth-20211014.diff
-          ./modules/dmenu/dmenu-fuzzymatch-4.9.diff
-          ./modules/dmenu/dmenu-fuzzyhighlight-4.9.diff
-          ./modules/dmenu/dmenu-qalc-5.2.diff
-        ];
-      });
-    })
-  ];
+  nixpkgs.config.allowUnfree = true;
 
   programs = {
     git.enable = true;
@@ -119,30 +72,18 @@
 
   home-manager = {
     extraSpecialArgs = { inherit inputs; };
+    useGlobalPkgs = true;
     users = {
       "mead" = import ./home;
     };
   };
 
-
-  nixpkgs.config.allowUnfree = true;
-
   environment.systemPackages = with pkgs; [
     wget
-    dmenu
-    slstatus
-    st
     gcc
     clang
     feh
     xclip
-    fastfetch
-    btop
-    ripgrep
-    grc
-    fzf
-    starship
-    ranger
   ];
 
   fonts.packages = with pkgs; [
