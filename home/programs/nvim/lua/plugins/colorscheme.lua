@@ -1,7 +1,7 @@
 return {
-	{ "no-clown-fiesta/no-clown-fiesta.nvim" },
+	{ "no-clown-fiesta/no-clown-fiesta" },
 	{
-		"LazyVim/Lazyvim",
+		"LazyVim/LazyVim",
 		opts = {
 			colorscheme = "no-clown-fiesta",
 		},

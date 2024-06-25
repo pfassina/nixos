@@ -4,11 +4,16 @@
   programs.neovim = {
     enable = true;
     extraPackages = with pkgs; [
+      # telescope
+      ripgrep
+      
+      # lua
       lua-language-server
       stylua
-      ripgrep
+      
+      # nix
       nixd
-      nixpkgs-lint
+      nixfmt-classic
     ];
     plugins =  with pkgs.vimPlugins; [
       lazy-nvim
@@ -60,44 +65,40 @@
           { name = "mini.indentscope"; path = mini-nvim ;}
           { name = "mini.pairs"; path = mini-nvim ;}
           { name = "mini.surround"; path = mini-nvim ;}
-	    ];
-	mkEntryFromDrv = drv:
-	  if lib.isDerivation drv then
-	    { name = "${lib.getName drv}"; path = drv; }
-	  else
-	    drv;
-	lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
-	in ''
-	  require("lazy").setup({
-	    defaults = {
-	      lazy = true,
-	    },
-	    dev = {
-	      path = "${lazyPath}",
-	      patterns = {"."},
-	      fallback = true,
-	    },
-	    spec = {
-	      { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-	      { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
-	      { "williamboman/mason-lspconfig.nvim", enabled = false },
-	      { "williamboman/mason.nvim", enabled = false },
-	      { import = "plugins" },
-	      { "nvim-treesitter/nvim-treesitter", opts = { ensure_installed = {} } },
-	    },
-	  })
-	'';
+	      ];
+	      mkEntryFromDrv = drv:
+	      if lib.isDerivation drv then
+	        { name = "${lib.getName drv}"; path = drv; }
+	      else
+	        drv;
+	      lazyPath = pkgs.linkFarm "lazy-plugins" (builtins.map mkEntryFromDrv plugins);
+	    in ''
+	      require("lazy").setup({
+	        defaults = {
+	          lazy = true,
+	        },
+	        dev = {
+	          path = "${lazyPath}",
+	          patterns = {"."},
+	          fallback = true,
+	        },
+	        spec = {
+            { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+            { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
+            { "williamboman/mason-lspconfig.nvim", enabled = false },
+            { "williamboman/mason.nvim", enabled = false },
+            { import = "plugins" },
+            { "nvim-treesitter/nvim-treesitter", opts = { ensure_installed = {} } },
+	        },
+	      })
+	    '';
   };
 
   xdg.configFile."nvim/parser".source = 
     let
       parsers = pkgs.symlinkJoin {
         name = "treesitter-parsers";
-	paths = (pkgs.vimPlugins.nvim-treesitter.withPlugins ( plugins: with plugins; [
-	  c
-	  lua
-    nix
-	])).dependencies;
+        paths = (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins: pkgs.tree-sitter.allGrammars)).dependencies;
       };
     in
       "${parsers}/parser";
