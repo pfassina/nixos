@@ -1,5 +1,4 @@
-modules/dwm/dwm/
-modules/dwm/dwm.backup
-modules/st/st/
-modules/dmenu/dmenu/
-modules/slstatus/slstatus/
+overlays/patches/dwm/dwm/
+overlays/patches/st/st/
+overlays/patches/dmenu/dmenu/
+overlays/patches/slstatus/slstatus/

@@ -22,20 +22,31 @@
   };
 
   home.packages = with pkgs; [
+    # terminal
+    bat
+    fzf
+    grc
+    # neovim
+    openssl
+    ripgrep
     st
+    wget
+
+    #desktop
     dmenu
     slstatus
-    neovim
+
+    # utilities
     bitwarden
+    btop
+    fastfetch
+    feh
+    flameshot      # screenshot
     libqalculate
     qalculate-gtk
-    fastfetch
-    btop
-    ripgrep
-    grc
-    fzf
-    starship
     ranger
+    variety
+    xclip
   ];
 
   home.file = {

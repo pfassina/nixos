@@ -22,6 +22,7 @@
           ./patches/dwm/dwm-accent.diff
           ./patches/dwm/dwm-dmenu.diff
           ./patches/dwm/dwm-dmenu-qalc.diff
+          ./patches/dwm/dwm-glyphs.diff
         ];
       });
     })

@@ -1,4 +1,4 @@
 [
+  ./nvim
   ./firefox.nix
-  ./st.nix
 ]

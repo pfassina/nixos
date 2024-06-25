@@ -13,9 +13,12 @@
     experimental-features = [ "nix-command" "flakes" ];
   };
 
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+  boot = {
+    tmp.cleanOnBoot = true;
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
   };
 
   networking = {
@@ -44,9 +47,22 @@
     xserver = {
       enable = true;
       xkb.layout = "us";
-      xkb.variant = "";
-      displayManager.lightdm.enable = true;
       windowManager.dwm.enable = true;
+      displayManager.lightdm = {
+        enable = true;
+        greeters.slick = {
+          enable = true;
+          theme.name = "Juno";
+          extraConfig = ''
+            [Greeter]
+            show-hostname=false
+            show-power=false
+            show-a11y=false
+            show-keyboard=false
+            show-quit=false
+          '';
+        };
+      };
     };
     xrdp = {
       enable = true;
@@ -82,12 +98,10 @@
   };
 
   environment.systemPackages = with pkgs; [
-    wget
     gcc
-    clang
-    feh
-    xclip
   ];
+
+  programs.nix-ld.enable = true;  # run unpackaged binaries for lsp to work
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
