@@ -13,8 +13,8 @@ index 84223d0..bc22cb6 100644
 +++ b/config.def.h
 @@ -12,6 +12,7 @@ static const int horizpadbar        = 2;        /* horizontal padding for status
  static const int vertpadbar         = 0;        /* vertical padding for statusbar */
- static const char *fonts[]          = { "FiraCode Nerd Font:size=10" };
- static const char dmenufont[]       = "FiraCode Nerd Font:size=10";
+ static const char *fonts[]          = { "FiraCode Nerd Font Mono:size=10" };
+ static const char dmenufont[]       = "FiraCode Nerd Font Mono:size=10";
 +static const char col_backg[]       = "#000000";
  static const char col_gray1[]       = "#151515";
  static const char col_gray2[]       = "#202020";

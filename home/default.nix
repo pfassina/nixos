@@ -26,6 +26,8 @@
     bat
     fzf
     grc
+    ueberzugpp
+    
     # neovim
     openssl
     ripgrep
@@ -44,16 +46,17 @@
     flameshot      # screenshot
     libqalculate
     qalculate-gtk
-    ranger
     variety
     xclip
   ];
 
   home.file = {
-    ".background-image".source = ./wallpapers/bg.jpg;
+    ".background-image".source = ./wallpapers/tokyo_street_night.jpg;
     ".xprofile".text = "/home/mead/.nix-profile/bin/slstatus &";
   };
 
+  programs.yazi.enable = true;
   programs.home-manager.enable = true;
+
 
 }
