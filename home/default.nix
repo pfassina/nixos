@@ -27,16 +27,17 @@
     fzf
     grc
     ueberzugpp
+    yazi
+    wget
     
     # neovim
     openssl
     ripgrep
-    st
-    wget
 
     #desktop
     dmenu
     slstatus
+    st
 
     # utilities
     bitwarden
@@ -55,8 +56,6 @@
     ".xprofile".text = "/home/mead/.nix-profile/bin/slstatus &";
   };
 
-  programs.yazi.enable = true;
   programs.home-manager.enable = true;
-
 
 }
