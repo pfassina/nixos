@@ -1,10 +1,12 @@
-{ config, inputs, pkgs, ... }:
-
 {
-  imports = 
+  config,
+  inputs,
+  pkgs,
+  ...
+}: {
+  imports =
     import ./shell
-    ++ import ./programs
-  ;
+    ++ import ./programs;
 
   home = {
     username = "mead";
@@ -29,7 +31,7 @@
     ueberzugpp
     yazi
     wget
-    
+
     # neovim
     openssl
     ripgrep
@@ -44,7 +46,7 @@
     btop
     fastfetch
     feh
-    flameshot      # screenshot
+    flameshot # screenshot
     libqalculate
     qalculate-gtk
     variety
@@ -57,5 +59,4 @@
   };
 
   programs.home-manager.enable = true;
-
 }

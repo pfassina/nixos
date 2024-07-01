@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-{
-
+{pkgs, ...}: {
   nixpkgs.overlays = [
     (self: super: {
       slstatus = super.slstatus.overrideAttrs (oldAttrs: rec {
@@ -10,5 +8,4 @@
       });
     })
   ];
-
 }

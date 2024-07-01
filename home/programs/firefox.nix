@@ -1,7 +1,4 @@
-{ pkgs, ... }:
-
-{
-
+{pkgs, ...}: {
   programs.firefox = {
     enable = true;
     profiles.default = {
@@ -33,18 +30,17 @@
       '';
     };
   };
-  
+
   home.file = {
     "firefox/cascade" = {
       recursive = true;
       target = ".mozilla/firefox/default/chrome/cascade";
-      source = (pkgs.fetchFromGitHub {
+      source = pkgs.fetchFromGitHub {
         owner = "cascadefox";
         repo = "cascade";
         rev = "8fbe98934fa58f934f7ed5253367396519b320a4";
         sha256 = "0k7g4aijc8gz1941a791qdbqfcc3wlwlvfn70nzxp14jssjd5i8q";
-      });
+      };
     };
   };
-
 }

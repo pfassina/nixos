@@ -1,8 +1,9 @@
-
-{ config, pkgs, inputs,  ... }:
-
-
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
@@ -10,7 +11,7 @@
 
   nix.settings = {
     auto-optimise-store = true;
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
   };
 
   boot = {
@@ -43,6 +44,8 @@
     };
   };
 
+  sound.enable = true;
+
   services = {
     xserver = {
       enable = true;
@@ -69,6 +72,14 @@
       defaultWindowManager = "dwm";
       openFirewall = true;
     };
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+    };
     getty.autologinUser = "mead";
     picom.enable = true;
     qemuGuest.enable = true;
@@ -85,12 +96,12 @@
   users.users.mead = {
     isNormalUser = true;
     description = "mead";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     shell = pkgs.fish;
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {inherit inputs;};
     useGlobalPkgs = true;
     users = {
       "mead" = import ./home;
@@ -101,12 +112,11 @@
     gcc
   ];
 
-  programs.nix-ld.enable = true;  # run unpackaged binaries for lsp to work
+  programs.nix-ld.enable = true; # run unpackaged binaries for lsp to work
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    (nerdfonts.override {fonts = ["FiraCode"];})
   ];
 
   system.stateVersion = "24.05";
-
 }

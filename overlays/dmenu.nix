@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-{
-
+{pkgs, ...}: {
   nixpkgs.overlays = [
     (self: super: {
       dmenu = super.dmenu.overrideAttrs (oldAttrs: rec {
@@ -15,5 +13,4 @@
       });
     })
   ];
-
 }

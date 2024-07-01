@@ -13,7 +13,7 @@
       
       # nix
       nixd
-      nixfmt-classic
+      alejandra
     ];
     plugins =  with pkgs.vimPlugins; [
       lazy-nvim
