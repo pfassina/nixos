@@ -1,7 +1,7 @@
-{pkgs, ...}: {
+{...}: {
   nixpkgs.overlays = [
     (self: super: {
-      dmenu = super.dmenu.overrideAttrs (oldAttrs: rec {
+      dmenu = super.dmenu.overrideAttrs (oldAttrs: {
         patches = [
           ./patches/dmenu/dmenu-center-5.2.diff
           ./patches/dmenu/dmenu-border-4.9.diff

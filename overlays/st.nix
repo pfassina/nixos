@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   nixpkgs.overlays = [
     (self: super: {
-      st = super.st.overrideAttrs (oldAttrs: rec {
+      st = super.st.overrideAttrs (oldAttrs: {
         patches = [
           ./patches/st/st-no-fiesta.diff
           ./patches/st/st-ligatures-20210824-0.8.4.diff

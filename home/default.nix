@@ -1,9 +1,4 @@
-{
-  config,
-  inputs,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports =
     import ./shell
     ++ import ./programs;

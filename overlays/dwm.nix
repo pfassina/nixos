@@ -1,7 +1,7 @@
-{pkgs, ...}: {
+{...}: {
   nixpkgs.overlays = [
     (self: super: {
-      dwm = super.dwm.overrideAttrs (oldAttrs: rec {
+      dwm = super.dwm.overrideAttrs (oldAttrs: {
         patches = [
           ./patches/dwm/dwm-firacode.diff
           ./patches/dwm/dwm-no-clown-fiesta.diff
