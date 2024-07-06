@@ -22,12 +22,14 @@
 
   home.packages = with pkgs; [
     # terminal
+    kitty
     bat
     fzf
     grc
     ueberzugpp
     yazi
     wget
+    tmux
 
     # neovim
     openssl
@@ -35,11 +37,11 @@
 
     # wayland
     wofi
-    kitty
     wl-clipboard
     hyprpaper
     waybar
     dunst
+    hyprlock
 
     # (waybar.override {wireplumberSupport = false;})
 
@@ -56,5 +58,10 @@
 
   programs = {
     home-manager.enable = true;
+    git = {
+      enable = true;
+      userName = "pfassina";
+      userEmail = "git@fassina.me";
+    };
   };
 }

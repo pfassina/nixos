@@ -79,14 +79,12 @@
   nixpkgs.config.allowUnfree = true;
 
   programs = {
-    nix-ld.enable = true;
     hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     };
-    hyprlock.enable = true;
     fish.enable = true;
-    tmux.enable = true;
+    nix-ld.enable = true;
   };
 
   users.users.mead = {
