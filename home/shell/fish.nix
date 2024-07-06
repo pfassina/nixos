@@ -4,6 +4,9 @@
     interactiveShellInit = ''
       set fish_greeting
     '';
+    shellAliases = {
+      rebuild = "sudo nixos-rebuild switch --flake ~/nix/#nixos";
+    };
     plugins = with pkgs.fishPlugins; [
       {
         name = "grc";

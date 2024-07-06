@@ -34,6 +34,7 @@
         cmp-path
         cmp_luasnip
         conform-nvim
+        dressing-nvim
         dashboard-nvim
         flash-nvim
         friendly-snippets
@@ -42,13 +43,14 @@
         lualine-nvim
         neo-tree-nvim
         neoconf-nvim
+        neodev-nvim
         noice-nvim
         nui-nvim
         nvim-cmp
         nvim-lint
         nvim-lspconfig
         nvim-notify
-        nvim-spectre
+        # nvim-spectre
         nvim-treesitter
         nvim-treesitter-context
         nvim-treesitter-textobjects
@@ -57,6 +59,8 @@
         nvim-web-devicons
         persistence-nvim
         plenary-nvim
+        telescope-fzf-native-nvim
+        telescope-nvim
         todo-comments-nvim
         no-clown-fiesta-nvim
         trouble-nvim
@@ -120,7 +124,11 @@
            { "williamboman/mason-lspconfig.nvim", enabled = false },
            { "williamboman/mason.nvim", enabled = false },
            { import = "plugins" },
-           { "nvim-treesitter/nvim-treesitter", opts = { ensure_installed = {} } },
+           { "nvim-treesitter/nvim-treesitter",
+             opts = function(_, opts)
+               opts.ensure_installed = {}
+             end,
+           },
         },
       })
     '';

@@ -18,6 +18,8 @@
     userDirs.createDirectories = true;
   };
 
+  # wayland.windowManager.hyprland.enable = true;
+
   home.packages = with pkgs; [
     # terminal
     bat
@@ -31,10 +33,15 @@
     openssl
     ripgrep
 
-    #desktop
-    dmenu
-    slstatus
-    st
+    # wayland
+    wofi
+    kitty
+    wl-clipboard
+    hyprpaper
+    waybar
+    dunst
+
+    # (waybar.override {wireplumberSupport = false;})
 
     # utilities
     bitwarden
@@ -45,13 +52,9 @@
     libqalculate
     qalculate-gtk
     variety
-    xclip
   ];
 
-  home.file = {
-    ".background-image".source = ./wallpapers/tokyo_street_night.jpg;
-    ".xprofile".text = "/home/mead/.nix-profile/bin/slstatus &";
+  programs = {
+    home-manager.enable = true;
   };
-
-  programs.home-manager.enable = true;
 }

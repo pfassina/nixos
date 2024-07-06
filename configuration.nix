@@ -1,5 +1,4 @@
 {
-  # config,
   pkgs,
   inputs,
   ...
@@ -18,7 +17,40 @@
     tmp.cleanOnBoot = true;
     loader = {
       systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
+    };
+  };
+
+  hardware.firmware = [
+    (pkgs.stdenvNoCC.mkDerivation (final: {
+      name = "brcm-firmware";
+      src = ./firmware.tar;
+      dontUnpack = true;
+      installPhase = ''
+         mkdir -p $out/lib/firmware/brcm
+        tar -xf ${final.src} -C $out/lib/firmware/brcm
+      '';
+    }))
+  ];
+
+  services = {
+    getty.autologinUser = "mead";
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+      enableHidpi = true;
+    };
+    pipewire = {
+      enable = true;
+      audio.enable = true;
+      pulse.enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
     };
   };
 
@@ -44,51 +76,15 @@
     };
   };
 
-  sound.enable = true;
-
-  services = {
-    xserver = {
-      enable = true;
-      xkb.layout = "us";
-      windowManager.dwm.enable = true;
-      displayManager.lightdm = {
-        enable = true;
-        greeters.slick = {
-          enable = true;
-          theme.name = "Juno";
-          extraConfig = ''
-            [Greeter]
-            show-hostname=false
-            show-power=false
-            show-a11y=false
-            show-keyboard=false
-            show-quit=false
-          '';
-        };
-      };
-    };
-    xrdp = {
-      enable = true;
-      defaultWindowManager = "dwm";
-      openFirewall = true;
-    };
-    pipewire = {
-      enable = true;
-      pulse.enable = true;
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-    };
-    getty.autologinUser = "mead";
-    picom.enable = true;
-    qemuGuest.enable = true;
-  };
-
   nixpkgs.config.allowUnfree = true;
 
   programs = {
-    git.enable = true;
+    nix-ld.enable = true;
+    hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    };
+    hyprlock.enable = true;
     fish.enable = true;
     tmux.enable = true;
   };
@@ -108,15 +104,17 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    gcc
-  ];
-
-  programs.nix-ld.enable = true; # run unpackaged binaries for lsp to work
+  environment = {
+    sessionVariables.NIXOS_OZONE_WL = "1";
+    systemPackages = with pkgs; [
+      git
+      gh
+    ];
+  };
 
   fonts.packages = with pkgs; [
     (nerdfonts.override {fonts = ["FiraCode"];})
   ];
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 }
