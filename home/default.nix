@@ -36,12 +36,13 @@
     ripgrep
 
     # wayland
-    wofi
-    wl-clipboard
+    dunst
+    hypridle
+    hyprlock
     hyprpaper
     waybar
-    dunst
-    hyprlock
+    wl-clipboard
+    wofi
 
     # (waybar.override {wireplumberSupport = false;})
 
