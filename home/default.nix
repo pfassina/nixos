@@ -1,7 +1,8 @@
 {pkgs, ...}: {
   imports =
     import ./shell
-    ++ import ./programs;
+    ++ import ./programs
+    ++ import ./desktop;
 
   home = {
     username = "mead";
@@ -37,10 +38,8 @@
 
     # wayland
     hypridle
-    hyprlock
-    hyprpaper
+    # hyprpaper
     mako
-    waybar
     wl-clipboard
     wofi
 
@@ -59,6 +58,10 @@
     discord
     lutris
     bottles
+    wineWowPackages.waylandFull
+
+    # others
+    adwaita-icon-theme
   ];
 
   programs = {
