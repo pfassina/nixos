@@ -101,7 +101,7 @@
   users.users.mead = {
     isNormalUser = true;
     description = "mead";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "gamemode"];
     shell = pkgs.fish;
   };
 
@@ -114,7 +114,10 @@
   };
 
   environment = {
-    sessionVariables.NIXOS_OZONE_WL = "1";
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
+    };
     systemPackages = with pkgs; [
       git
       gh

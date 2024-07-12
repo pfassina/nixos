@@ -52,7 +52,13 @@
     flameshot # screenshot
     libqalculate
     qalculate-gtk
-    variety
+
+    # gaming
+    mangohud
+    protonup
+    discord
+    lutris
+    bottles
   ];
 
   programs = {
