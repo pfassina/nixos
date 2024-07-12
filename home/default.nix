@@ -36,15 +36,13 @@
     ripgrep
 
     # wayland
-    dunst
     hypridle
     hyprlock
     hyprpaper
+    mako
     waybar
     wl-clipboard
     wofi
-
-    # (waybar.override {wireplumberSupport = false;})
 
     # utilities
     bitwarden

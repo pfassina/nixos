@@ -24,17 +24,23 @@
     };
   };
 
-  hardware.firmware = [
-    (pkgs.stdenvNoCC.mkDerivation (final: {
-      name = "brcm-firmware";
-      src = ./firmware.tar;
-      dontUnpack = true;
-      installPhase = ''
-         mkdir -p $out/lib/firmware/brcm
-        tar -xf ${final.src} -C $out/lib/firmware/brcm
-      '';
-    }))
-  ];
+  hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+    firmware = [
+      (pkgs.stdenvNoCC.mkDerivation (final: {
+        name = "brcm-firmware";
+        src = ./firmware.tar;
+        dontUnpack = true;
+        installPhase = ''
+           mkdir -p $out/lib/firmware/brcm
+          tar -xf ${final.src} -C $out/lib/firmware/brcm
+        '';
+      }))
+    ];
+  };
 
   services = {
     getty.autologinUser = "mead";
@@ -85,6 +91,11 @@
     };
     fish.enable = true;
     nix-ld.enable = true;
+    gamemode.enable = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
   };
 
   users.users.mead = {

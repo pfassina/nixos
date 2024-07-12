@@ -5,7 +5,7 @@
       background = [
         {
           monitor = "";
-          path = "~/nix/home/wallpapers/dave-hoefler-i0K3-IHiXYI-unsplash.jpg";
+          path = "~/nix/home/wallpapers/johannes-plenio-hvrpOmuMrAI-unsplash.jpg";
         }
       ];
       input-field = [
@@ -61,17 +61,14 @@
       ];
       image = {
         monitor = "";
-        path = "~/nix/home/wallpapers/turtle.jpg";
+        path = "~/nix/home/wallpapers/user.jpg";
         size = 280;
         rounding = -1;
         border_size = 4;
         border_color = "rgb(221, 221, 221)";
         rotate = 0;
         reload_time = -1;
-        position = {
-          x = 0;
-          y = 200;
-        };
+        position = "0, 200";
         halign = "center";
         valign = "center";
       };
