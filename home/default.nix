@@ -37,8 +37,8 @@
     ripgrep
 
     # wayland
-    hypridle
-    # hyprpaper
+    hyprpicker
+    hyprcursor
     mako
     wl-clipboard
     wofi
