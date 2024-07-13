@@ -40,6 +40,7 @@
         friendly-snippets
         gitsigns-nvim
         indent-blankline-nvim
+        lazygit-nvim
         lualine-nvim
         neo-tree-nvim
         neoconf-nvim

@@ -82,6 +82,7 @@
   programs = {
     home-manager.enable = true;
     # hyprcursor-phinger.enable = true;
+    lazygit.enable = true;
     git = {
       enable = true;
       userName = "pfassina";
