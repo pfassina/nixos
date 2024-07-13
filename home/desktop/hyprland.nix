@@ -14,8 +14,8 @@ in {
         gaps_out = 5;
         border_size = 1;
 
-        "col.active_border" = "rgba(e1e1e1ee)";
-        "col.inactive_border" = "rgba(151515aa)";
+        "col.active_border" = "rgb(e1e1e1)";
+        "col.inactive_border" = "rgb(151515)";
 
         resize_on_border = false;
         allow_tearing = false;
@@ -30,7 +30,7 @@ in {
         drop_shadow = true;
         shadow_range = 4;
         shadow_render_power = 3;
-        # col.shadow = "rgba(1a1a1aee)";
+        "col.shadow" = "rgba(1a1a1aee)";
 
         blur = {
           enabled = true;

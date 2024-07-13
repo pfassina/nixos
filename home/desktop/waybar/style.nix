@@ -47,7 +47,6 @@ in {
 
     #workspaces {
         font-size: 18px;
-        margin: 5;
         padding-left: 8px;
         padding-right: 8px;
         border-radius: 5px;
@@ -66,8 +65,6 @@ in {
     }
 
     #battery, #pulseaudio, #network, #clock {
-        margin-top: 5px;
-        margin-bottom: 5px;
         font-size: ${custom.font_size};
         color: ${custom.medium_gray};
         background: ${custom.bg};
@@ -89,7 +86,6 @@ in {
     #clock {
         padding-left: 9px;
         padding-right: 9px;
-        margin-right: 5px;
         border-radius: 0px 5px 5px 0px;
     }
   '';
