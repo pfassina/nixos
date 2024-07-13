@@ -24,6 +24,8 @@
     };
   };
 
+  systemd.services.NetworkManager-wait-online.enable = false;
+
   hardware = {
     graphics = {
       enable = true;

@@ -4,7 +4,7 @@
     font_size = "15px";
     font_weight = "bold";
     text_color = "#cdd6f4";
-    opacity = "0.98";
+    opacity = "1.0";
 
     fg = "#E1E1E1";
     bg = "#151515";
@@ -47,13 +47,14 @@ in {
 
     #workspaces {
         font-size: 18px;
-        padding-left: 15px;
+        padding-left: 8;
+        padding-right: 8px;
         background: ${custom.bg};
     }
     #workspaces button {
         color: ${custom.medium_gray};
-        padding-left:  6px;
-        padding-right: 6px;
+        padding-left:  8px;
+        padding-right: 8px;
     }
     #workspaces button.empty {
         color: ${custom.gray};
@@ -62,49 +63,28 @@ in {
         color: ${custom.fg};
     }
 
-    #tray, #pulseaudio, #network, #cpu, #memory, #disk, #clock, #battery {
+    #battery, #pulseaudio, #network, #clock {
         font-size: ${custom.font_size};
         color: ${custom.medium_gray};
         background: ${custom.bg};
     }
 
-    #cpu {
-        padding-left: 15px;
-        padding-right: 9px;
-        margin-left: 7px;
-    }
-    #memory {
+    #battery {
         padding-left: 9px;
         padding-right: 9px;
     }
-    #disk {
-        padding-left: 9px;
-        padding-right: 15px;
-    }
-
-    #tray {
-        padding: 0 20px;
-        margin-left: 7px;
-    }
-
     #pulseaudio {
         padding-left: 15px;
         padding-right: 9px;
         margin-left: 7px;
     }
-    #battery {
-        padding-left: 9px;
-        padding-right: 9px;
-    }
     #network {
         padding-left: 9px;
         padding-right: 30px;
     }
-
     #clock {
         padding-left: 9px;
         padding-right: 15px;
     }
-
   '';
 }

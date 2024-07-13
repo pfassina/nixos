@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   imports =
     import ./shell
     ++ import ./programs
@@ -64,8 +68,20 @@
     adwaita-icon-theme
   ];
 
+  gtk = {
+    enable = true;
+  };
+
+  home.pointerCursor = {
+    name = "phinger-cursors-light";
+    package = pkgs.phinger-cursors;
+    size = 32;
+    gtk.enable = true;
+  };
+
   programs = {
     home-manager.enable = true;
+    # hyprcursor-phinger.enable = true;
     git = {
       enable = true;
       userName = "pfassina";
