@@ -11,13 +11,11 @@ in {
 
       general = {
         gaps_in = 5;
-        gaps_out = 20;
-        border_size = 2;
+        gaps_out = 5;
+        border_size = 1;
 
-        # col = [
-        #   "active_border = rgba(33ccffee) rgba(00ff99ee) 45deg"
-        #   "inactive_border = rgba(595959aa"
-        # ];
+        "col.active_border" = "rgba(e1e1e1ee)";
+        "col.inactive_border" = "rgba(151515aa)";
 
         resize_on_border = false;
         allow_tearing = false;
@@ -25,7 +23,7 @@ in {
       };
 
       decoration = {
-        rounding = 10;
+        rounding = 5;
         active_opacity = 1.0;
         inactive_opacity = 1.0;
 

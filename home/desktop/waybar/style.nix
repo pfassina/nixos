@@ -1,6 +1,6 @@
 {...}: let
   custom = {
-    font = "FiraCode Nerd Font";
+    font = "FiraCode Nerd Font Propo";
     font_size = "15px";
     font_weight = "bold";
     text_color = "#cdd6f4";
@@ -47,8 +47,10 @@ in {
 
     #workspaces {
         font-size: 18px;
-        padding-left: 8;
+        margin: 5;
+        padding-left: 8px;
         padding-right: 8px;
+        border-radius: 5px;
         background: ${custom.bg};
     }
     #workspaces button {
@@ -64,27 +66,31 @@ in {
     }
 
     #battery, #pulseaudio, #network, #clock {
+        margin-top: 5px;
+        margin-bottom: 5px;
         font-size: ${custom.font_size};
         color: ${custom.medium_gray};
         background: ${custom.bg};
     }
 
     #battery {
+        border-radius: 5px 0px 0px 5px;
         padding-left: 9px;
         padding-right: 9px;
     }
     #pulseaudio {
-        padding-left: 15px;
+        padding-left: 9px;
         padding-right: 9px;
-        margin-left: 7px;
     }
     #network {
         padding-left: 9px;
-        padding-right: 30px;
+        padding-right: 9px;
     }
     #clock {
         padding-left: 9px;
-        padding-right: 15px;
+        padding-right: 9px;
+        margin-right: 5px;
+        border-radius: 0px 5px 5px 0px;
     }
   '';
 }

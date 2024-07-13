@@ -48,26 +48,12 @@
         "5" = [];
       };
     };
-    memory = {
-      format = "󰟜 {}%";
-      format-alt = "󰟜 {used} GiB"; # 
-      interval = 2;
-    };
-    cpu = {
-      format = "  {usage}%";
-      format-alt = "  {avg_frequency} GHz";
-      interval = 2;
-    };
-    disk = {
-      format = "󰋊 {percentage_used}%";
-      interval = 60;
-    };
     network = {
-      format-wifi = "  {signalStrength}%";
-      format-ethernet = "󰀂 ";
+      format-wifi = " {signalStrength}%";
+      format-ethernet = "󰀂";
       tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
       format-linked = "{ifname} (No IP)";
-      format-disconnected = "󰖪 ";
+      format-disconnected = "󰖪";
     };
     tray = {
       icon-size = 20;
@@ -75,16 +61,16 @@
     };
     pulseaudio = {
       format = "{icon} {volume}%";
-      format-muted = "  {volume}%";
+      format-muted = " {volume}%";
       format-icons = {
-        default = [" "];
+        default = [""];
       };
       scroll-step = 5;
       on-click = "pamixer -t";
     };
     battery = {
       format = "{icon} {capacity}%";
-      format-icons = [" " " " " " " " " "];
+      format-icons = ["" "" "" "" ""];
       format-charging = " {capacity}%";
       format-full = " {capacity}%";
       format-warning = " {capacity}%";

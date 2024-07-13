@@ -2,18 +2,12 @@
   programs.kitty = {
     enable = true;
 
-    environment = {
-      "LS_COLORS" = "1";
-    };
-
     font = {
       name = "FiraCode Nerd Font Mono";
       size = 12;
     };
 
     settings = {
-      # colors
-
       foreground = "#e1e1e1";
       background = "#151515";
       selection_foreground = "#e1e1e1";
