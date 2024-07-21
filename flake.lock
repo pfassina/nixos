@@ -232,7 +232,25 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "shadow-nix": "shadow-nix"
+      }
+    },
+    "shadow-nix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1700742965,
+        "narHash": "sha256-7RRlx9Chocbw+QffspIeZIBTt14zpFd8+kOTuQHWfPo=",
+        "owner": "anthonyroussel",
+        "repo": "shadow-nix",
+        "rev": "caae642e4ac8051fa7b751e78492ebd22e7b2153",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anthonyroussel",
+        "ref": "v1.5.0",
+        "repo": "shadow-nix",
+        "type": "github"
       }
     },
     "systems": {

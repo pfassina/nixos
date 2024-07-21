@@ -6,6 +6,7 @@
     '';
     shellAliases = {
       rebuild = "sudo nixos-rebuild switch --flake ~/nix/#nixos";
+      nix-config = "nvim ~/nix/configuration.nix";
     };
     plugins = with pkgs.fishPlugins; [
       {

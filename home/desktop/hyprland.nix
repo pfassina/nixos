@@ -6,7 +6,7 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      monitor = ",preferred,auto,auto";
+      monitor = "eDP-1,preferred,0x0,1.6";
       exec-once = ''${startupScript}/bin/start'';
 
       general = {

@@ -20,6 +20,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    shadow-nix = {
+      url = "github:anthonyroussel/shadow-nix/v1.5.0";
+      flake = false;
+    };
   };
 
   outputs = {

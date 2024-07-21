@@ -51,6 +51,7 @@
     flameshot # screenshot
     libqalculate
     qalculate-gtk
+    spotify
 
     # gaming
     mangohud

@@ -30,6 +30,12 @@
     graphics = {
       enable = true;
       enable32Bit = true;
+      extraPackages = with pkgs; [
+        vaapiIntel
+        vaapiVdpau
+        libvdpau
+        intel-media-driver
+      ];
     };
     firmware = [
       (pkgs.stdenvNoCC.mkDerivation (final: {
@@ -123,6 +129,9 @@
     systemPackages = with pkgs; [
       git
       gh
+      libva-utils
+      nix-prefetch-git
+      efibootmgr
     ];
   };
 
