@@ -15,6 +15,7 @@
 
   boot = {
     tmp.cleanOnBoot = true;
+    kernelModules = ["uinput" "evdev" "hid" "hid_generic"];
     loader = {
       systemd-boot.enable = true;
       efi = {
@@ -27,6 +28,10 @@
   systemd.services.NetworkManager-wait-online.enable = false;
 
   hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -66,11 +71,31 @@
         support32Bit = true;
       };
     };
+    udev.extraRules = ''
+      KERNEL=="uinput", MODE="0660", GROUP="input, OPTIONS+="static_node=uinput"
+      KERNEL=="event*", NAME="input/%k", MODE="0660", GROUP="input"
+      KERNEL=="js*", NAME="input/%k", MODE="0660", GROUP="input"
+    '';
   };
 
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
+    firewall = {
+      enable = true;
+      allowedTCPPortRanges = [
+        {
+          from = 8001;
+          to = 15299;
+        }
+      ];
+      allowedUDPPortRanges = [
+        {
+          from = 8001;
+          to = 15299;
+        }
+      ];
+    };
   };
 
   time.timeZone = "America/Los_Angeles";
@@ -90,11 +115,15 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
+  };
 
   programs = {
     hyprland = {
       enable = true;
+      xwayland.enable = true;
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     };
     fish.enable = true;
@@ -106,11 +135,22 @@
     };
   };
 
-  users.users.mead = {
-    isNormalUser = true;
-    description = "mead";
-    extraGroups = ["networkmanager" "wheel" "gamemode"];
-    shell = pkgs.fish;
+  users = {
+    groups = {shadow-input = {};};
+    users.mead = {
+      isNormalUser = true;
+      description = "mead";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "audio"
+        "video"
+        "gamemode"
+        "shadow-input"
+        "input"
+      ];
+      shell = pkgs.fish;
+    };
   };
 
   home-manager = {
