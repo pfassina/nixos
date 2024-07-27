@@ -80,38 +80,6 @@
   networking = {
     hostName = "nixos";
     networkmanager.enable = true;
-    firewall = {
-      enable = true;
-      allowedTCPPortRanges = [
-        {
-          from = 8001;
-          to = 15299;
-        }
-      ];
-      allowedUDPPortRanges = [
-        {
-          from = 8001;
-          to = 15299;
-        }
-      ];
-      extraCommands = ''
-        # Allow outgoing TCP traffic on the specified port range
-        iptables -A OUTPUT -p tcp --dport 8001:15299 -j ACCEPT
-        ip6tables -A OUTPUT -p tcp --dport 8001:15299 -j ACCEPT
-
-        # Allow outgoing UDP traffic on the specified port range
-        iptables -A OUTPUT -p udp --dport 8001:15299 -j ACCEPT
-        ip6tables -A OUTPUT -p udp --dport 8001:15299 -j ACCEPT
-
-        # Allow incoming TCP traffic on the specified port range
-        iptables -A INPUT -p tcp --dport 8001:15299 -j ACCEPT
-        ip6tables -A INPUT -p tcp --dport 8001:15299 -j ACCEPT
-
-        # Allow incoming UDP traffic on the specified port range
-        iptables -A INPUT -p udp --dport 8001:15299 -j ACCEPT
-        ip6tables -A INPUT -p udp --dport 8001:15299 -j ACCEPT
-      '';
-    };
   };
 
   time.timeZone = "America/Los_Angeles";
