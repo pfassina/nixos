@@ -15,7 +15,7 @@
 
   boot = {
     tmp.cleanOnBoot = true;
-    kernelModules = ["uinput" "evdev" "hid" "hid_generic"];
+    kernelModules = ["uinput"];
     loader = {
       systemd-boot.enable = true;
       efi = {
@@ -57,6 +57,7 @@
 
   services = {
     getty.autologinUser = "mead";
+    blueman.enable = true;
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;
@@ -72,9 +73,7 @@
       };
     };
     udev.extraRules = ''
-      KERNEL=="uinput", MODE="0660", GROUP="input, OPTIONS+="static_node=uinput"
-      KERNEL=="event*", NAME="input/%k", MODE="0660", GROUP="input"
-      KERNEL=="js*", NAME="input/%k", MODE="0660", GROUP="input"
+      KERNEL=="uinput", MODE="0660", GROUP="input, OPTIONS+="static_node=shadow-input"
     '';
   };
 
@@ -95,6 +94,23 @@
           to = 15299;
         }
       ];
+      extraCommands = ''
+        # Allow outgoing TCP traffic on the specified port range
+        iptables -A OUTPUT -p tcp --dport 8001:15299 -j ACCEPT
+        ip6tables -A OUTPUT -p tcp --dport 8001:15299 -j ACCEPT
+
+        # Allow outgoing UDP traffic on the specified port range
+        iptables -A OUTPUT -p udp --dport 8001:15299 -j ACCEPT
+        ip6tables -A OUTPUT -p udp --dport 8001:15299 -j ACCEPT
+
+        # Allow incoming TCP traffic on the specified port range
+        iptables -A INPUT -p tcp --dport 8001:15299 -j ACCEPT
+        ip6tables -A INPUT -p tcp --dport 8001:15299 -j ACCEPT
+
+        # Allow incoming UDP traffic on the specified port range
+        iptables -A INPUT -p udp --dport 8001:15299 -j ACCEPT
+        ip6tables -A INPUT -p udp --dport 8001:15299 -j ACCEPT
+      '';
     };
   };
 

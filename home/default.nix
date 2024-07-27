@@ -52,6 +52,7 @@
     libqalculate
     qalculate-gtk
     spotify
+    wireshark-cli
 
     # gaming
     mangohud

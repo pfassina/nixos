@@ -6,7 +6,10 @@ in {
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      monitor = "eDP-1,preferred,0x0,1.6";
+      monitor = [
+        "DP-4,3840x2160,0x0,1.0"
+        "eDP-1,2560x1600,-2560x800,1.0"
+      ];
       exec-once = ''${startupScript}/bin/start'';
 
       general = {
@@ -16,10 +19,6 @@ in {
 
         "col.active_border" = "rgb(e1e1e1)";
         "col.inactive_border" = "rgb(151515)";
-
-        resize_on_border = false;
-        allow_tearing = false;
-        layout = "dwindle";
       };
 
       decoration = {
@@ -55,7 +54,6 @@ in {
       };
 
       dwindle = {
-        pseudotile = false;
         force_split = 2;
         preserve_split = true;
       };
@@ -67,17 +65,13 @@ in {
 
       input = {
         kb_layout = "us";
-        follow_mouse = false;
+        follow_mouse = 0;
         sensitivity = 0;
+        natural_scroll = true;
         touchpad.natural_scroll = true;
       };
 
       gestures.workspace_swipe = true;
-
-      device = {
-        name = "epic-mouse-v1";
-        sensitivity = -0.5;
-      };
 
       "$mod" = "SUPER";
       bind = [
@@ -138,10 +132,12 @@ in {
         # Scroll through existing workspaces with mod + scroll
         "$mod, mouse_down, workspace, e+1"
         "$mod, mouse_up, workspace, e-1"
+      ];
 
+      bindm = [
         # Move/resize windows with mod + LMB/RMB and dragging
         "$mod, mouse:272, movewindow"
-        # "$mod, mouse:273, resizewindow"
+        "$mod, mouse:273, resizewindow"
       ];
     };
   };
