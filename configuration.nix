@@ -1,8 +1,8 @@
-
-{ config, pkgs, inputs,  ... }:
-
-
 {
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
@@ -10,15 +10,71 @@
 
   nix.settings = {
     auto-optimise-store = true;
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
   };
 
   boot = {
     tmp.cleanOnBoot = true;
+    kernelModules = ["uinput"];
     loader = {
       systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot";
+      };
     };
+  };
+
+  systemd.services.NetworkManager-wait-online.enable = false;
+
+  hardware = {
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        vaapiIntel
+        vaapiVdpau
+        libvdpau
+        intel-media-driver
+      ];
+    };
+    firmware = [
+      (pkgs.stdenvNoCC.mkDerivation (final: {
+        name = "brcm-firmware";
+        src = ./firmware.tar;
+        dontUnpack = true;
+        installPhase = ''
+           mkdir -p $out/lib/firmware/brcm
+          tar -xf ${final.src} -C $out/lib/firmware/brcm
+        '';
+      }))
+    ];
+  };
+
+  services = {
+    getty.autologinUser = "mead";
+    blueman.enable = true;
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+      enableHidpi = true;
+    };
+    pipewire = {
+      enable = true;
+      audio.enable = true;
+      pulse.enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+    };
+    udev.extraRules = ''
+      KERNEL=="uinput", MODE="0660", GROUP="input, OPTIONS+="static_node=shadow-input"
+    '';
   };
 
   networking = {
@@ -43,70 +99,69 @@
     };
   };
 
-  services = {
-    xserver = {
-      enable = true;
-      xkb.layout = "us";
-      windowManager.dwm.enable = true;
-      displayManager.lightdm = {
-        enable = true;
-        greeters.slick = {
-          enable = true;
-          theme.name = "Juno";
-          extraConfig = ''
-            [Greeter]
-            show-hostname=false
-            show-power=false
-            show-a11y=false
-            show-keyboard=false
-            show-quit=false
-          '';
-        };
-      };
-    };
-    xrdp = {
-      enable = true;
-      defaultWindowManager = "dwm";
-      openFirewall = true;
-    };
-    getty.autologinUser = "mead";
-    picom.enable = true;
-    qemuGuest.enable = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    vaapiIntel = pkgs.vaapiIntel.override {enableHybridCodec = true;};
   };
-
-  nixpkgs.config.allowUnfree = true;
 
   programs = {
-    git.enable = true;
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    };
     fish.enable = true;
-    tmux.enable = true;
+    nix-ld.enable = true;
+    gamemode.enable = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
   };
 
-  users.users.mead = {
-    isNormalUser = true;
-    description = "mead";
-    extraGroups = [ "networkmanager" "wheel" ];
-    shell = pkgs.fish;
+  users = {
+    groups = {shadow-input = {};};
+    users.mead = {
+      isNormalUser = true;
+      description = "mead";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "audio"
+        "video"
+        "gamemode"
+        "shadow-input"
+        "input"
+      ];
+      shell = pkgs.fish;
+    };
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {inherit inputs;};
     useGlobalPkgs = true;
     users = {
       "mead" = import ./home;
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    gcc
-  ];
-
-  programs.nix-ld.enable = true;  # run unpackaged binaries for lsp to work
+  environment = {
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "\${HOME}/.steam/root/compatibilitytools.d";
+    };
+    systemPackages = with pkgs; [
+      git
+      gh
+      libva-utils
+      nix-prefetch-git
+      efibootmgr
+    ];
+  };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    (nerdfonts.override {fonts = ["FiraCode"];})
   ];
 
-  system.stateVersion = "24.05";
-
+  system.stateVersion = "24.11";
 }

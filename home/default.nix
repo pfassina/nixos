@@ -1,10 +1,8 @@
-{ config, inputs, pkgs, ... }:
-
-{
-  imports = 
+{pkgs, ...}: {
+  imports =
     import ./shell
     ++ import ./programs
-  ;
+    ++ import ./desktop;
 
   home = {
     username = "mead";
@@ -21,41 +19,72 @@
     userDirs.createDirectories = true;
   };
 
+  # wayland.windowManager.hyprland.enable = true;
+
   home.packages = with pkgs; [
     # terminal
+    kitty
     bat
     fzf
     grc
     ueberzugpp
     yazi
     wget
-    
+    tmux
+
     # neovim
     openssl
     ripgrep
 
-    #desktop
-    dmenu
-    slstatus
-    st
+    # wayland
+    hyprpicker
+    hyprcursor
+    mako
+    wl-clipboard
+    wofi
 
     # utilities
     bitwarden
     btop
     fastfetch
     feh
-    flameshot      # screenshot
+    flameshot # screenshot
     libqalculate
     qalculate-gtk
-    variety
-    xclip
+    spotify
+    wireshark-cli
+
+    # gaming
+    mangohud
+    protonup
+    discord
+    lutris
+    bottles
+    wineWowPackages.waylandFull
+
+    # others
+    adwaita-icon-theme
   ];
 
-  home.file = {
-    ".background-image".source = ./wallpapers/tokyo_street_night.jpg;
-    ".xprofile".text = "/home/mead/.nix-profile/bin/slstatus &";
+  gtk = {
+    enable = true;
   };
 
-  programs.home-manager.enable = true;
+  home.pointerCursor = {
+    name = "phinger-cursors-light";
+    package = pkgs.phinger-cursors;
+    size = 32;
+    gtk.enable = true;
+  };
 
+  programs = {
+    home-manager.enable = true;
+    # hyprcursor-phinger.enable = true;
+    lazygit.enable = true;
+    git = {
+      enable = true;
+      userName = "pfassina";
+      userEmail = "git@fassina.me";
+    };
+  };
 }
