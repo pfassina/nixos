@@ -1,6 +1,8 @@
 {pkgs, ...}: let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     ${pkgs.waybar}/bin/waybar &
+    gsettings set org.gnome.desktop.interface color-scheme "prefer-dark"
+
   '';
 in {
   wayland.windowManager.hyprland = {

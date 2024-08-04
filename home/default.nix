@@ -19,8 +19,6 @@
     userDirs.createDirectories = true;
   };
 
-  # wayland.windowManager.hyprland.enable = true;
-
   home.packages = with pkgs; [
     # terminal
     kitty
@@ -53,6 +51,7 @@
     qalculate-gtk
     spotify
     wireshark-cli
+    obsidian
 
     # gaming
     mangohud
@@ -68,6 +67,14 @@
 
   gtk = {
     enable = true;
+    theme = {
+      name = "Graphite";
+      package = pkgs.graphite-gtk-theme.override {
+        tweaks = ["darker"];
+      };
+    };
+    gtk3.extraConfig.Settings = ''gtk-application-prefer-dark-themes=1'';
+    gtk4.extraConfig.Settings = ''gtk-application-prefer-dark-themes=1'';
   };
 
   home.pointerCursor = {
