@@ -68,7 +68,7 @@ in {
       input = {
         kb_layout = "us";
         follow_mouse = 0;
-        sensitivity = 0;
+        sensitivity = 0.5;
         natural_scroll = true;
         touchpad.natural_scroll = true;
       };
